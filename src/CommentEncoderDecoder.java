@@ -14,7 +14,7 @@ public class CommentEncoderDecoder {
     public static String decodeComment(byte[] encodedComment) {
         
         String comment = encodedComment.toString();
-
+        
         return comment;
     }
 
@@ -26,6 +26,12 @@ public class CommentEncoderDecoder {
             for (byte b : encodedComment) {
                 System.out.printf("%02x ", b);
             }
+
+        String decodedComment = decodeComment(encodedComment);
         
+        System.out.println("Message décodé (hex) :");
+            
+        System.out.println(decodedComment);
+            
     }
 }
