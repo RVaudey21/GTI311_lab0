@@ -21,6 +21,11 @@ public class CommentEncoderDecoder {
     public static void main(String[] args) {
         String comment = "Bonjour 123";
         byte[] encodedComment = encodeComment(comment, 0);
-        System.out.println(encodedComment); 
+        
+        System.out.println("Message encodé (hex) :");
+            for (byte b : encodedComment) {
+                System.out.printf("%02x ", b);
+            }
+        
     }
 }
