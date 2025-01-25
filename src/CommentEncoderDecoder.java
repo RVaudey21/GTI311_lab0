@@ -28,7 +28,7 @@ public class CommentEncoderDecoder {
     }
 
     // Méthode pour décoder le commentaire
-    public static String decodeComment(byte[] encodedComment) {
+    public static Result decodeComment(byte[] encodedComment) {
         
         ByteBuffer buffer = ByteBuffer.wrap(encodedComment);
         buffer.order(ByteOrder.LITTLE_ENDIAN); // Little-Endian
@@ -44,23 +44,45 @@ public class CommentEncoderDecoder {
 
         // Lecture du délai
         int delay = buffer.getInt();
-        System.out.println(delay);
+       
         
-        return comment;
+        return new Result(comment, delay);
     }
+
+
+    // Classe pour encapsuler les résultats du décodage
+    public static class Result {
+        private final String comment;
+        private final int delay;
+
+        public Result(String comment, int delay) {
+            this.comment = comment;
+            this.delay = delay;
+        }
+
+        public String getComment() {
+            return comment;
+        }
+
+        public int getDelay() {
+            return delay;
+        }
+    }
+
 
     public static void main(String[] args) {
         String comment = "Bonjour 123";
         byte[] encodedComment = encodeComment(comment, 42);
         
-        System.out.println("Message encodé (hex) :");
+        System.out.println("Message encodé en héxa :");
             for (byte b : encodedComment) {
                 System.out.printf("%02x ", b);
             }
             System.out.println();    
-        String decodedComment = decodeComment(encodedComment);
+        Result decodedComment = decodeComment(encodedComment);
+
         
-        System.out.println("Message décodé (hex) :");
+        System.out.println("Message décodé :");
             
         System.out.println(decodedComment);
             
