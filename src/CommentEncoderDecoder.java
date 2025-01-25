@@ -81,10 +81,12 @@ public class CommentEncoderDecoder {
             System.out.println();    
         Result decodedComment = decodeComment(encodedComment);
 
-        
-        System.out.println("Message décodé :");
-            
-        System.out.println(decodedComment);
+        //Affichage du message décodé et de son délai
+        System.out.println();
+        System.out.println("Message décodé :");            
+        System.out.println(decodedComment.getComment());
+        System.out.println("Délai du message décodé :");
+        System.out.println(decodedComment.getDelay());
             
     }
 }
